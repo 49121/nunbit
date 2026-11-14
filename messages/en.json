@@ -30,6 +30,7 @@
     "after": "Translated",
     "heroOriginal": "Original photo",
     "heroSimulation": "Color-blind view",
+    "heroAlt": "A field of red tulips",
     "visualCaption": "Drag to notice what changes",
     "colorPickCta": "Extract HEX & RGB from an image",
     "colorPickCtaBody": "Click a point in an image to record its color name, HEX, and RGB values.",

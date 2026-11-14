@@ -94,7 +94,7 @@ export default async function HomePage({
         </div>
 
         <div className="order-2 md:order-none">
-          <HeroCompare before={t("heroOriginal")} after={t("heroSimulation")} hint={t("visualCaption")} locale={locale} />
+          <HeroCompare before={t("heroOriginal")} after={t("heroSimulation")} hint={t("visualCaption")} locale={locale} alt={t("heroAlt")} />
         </div>
       </section>
 

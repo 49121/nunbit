@@ -31,7 +31,7 @@ async function simulatedHero(type: HeroVisionType) {
   return canvas.toDataURL("image/jpeg", 0.9);
 }
 
-export function HeroCompare({ before, after, hint, locale }: { before: string; after: string; hint: string; locale: string }) {
+export function HeroCompare({ before, after, hint, locale, alt }: { before: string; after: string; hint: string; locale: string; alt: string }) {
   const [divider, setDivider] = useState(50);
   const [dragging, setDragging] = useState(false);
   const [visionType, setVisionType] = useState<HeroVisionType>("deutan");
@@ -56,7 +56,7 @@ export function HeroCompare({ before, after, hint, locale }: { before: string; a
 
   return <figure className="relative mx-auto w-full max-w-[560px]">
     <div role="slider" tabIndex={0} aria-label={hint} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(divider)} className="relative aspect-[1.08/1] cursor-ew-resize touch-none select-none overflow-hidden rounded-[var(--radius-l)] focus-visible:outline-3 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-3" onPointerDown={(event) => { event.preventDefault(); setDragging(true); event.currentTarget.setPointerCapture(event.pointerId); updateDivider(event.clientX, event.currentTarget); }} onPointerMove={(event) => { if (dragging) { event.preventDefault(); updateDivider(event.clientX, event.currentTarget); } }} onPointerUp={(event) => { setDragging(false); event.currentTarget.releasePointerCapture(event.pointerId); }} onPointerCancel={() => setDragging(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft" || event.key === "ArrowDown") { event.preventDefault(); setDivider((value) => Math.max(0, value - 5)); } if (event.key === "ArrowRight" || event.key === "ArrowUp") { event.preventDefault(); setDivider((value) => Math.min(100, value + 5)); } if (event.key === "Home") { event.preventDefault(); setDivider(0); } if (event.key === "End") { event.preventDefault(); setDivider(100); } }}>
-      <img src={HERO_IMAGE} alt="A field of red tulips" draggable={false} className="pointer-events-none absolute inset-0 size-full object-cover" />
+      <img src={HERO_IMAGE} alt={alt} draggable={false} className="pointer-events-none absolute inset-0 size-full object-cover" />
       <img src={rightImage} alt="" aria-hidden="true" draggable={false} className="pointer-events-none absolute inset-0 size-full object-cover transition-opacity duration-[var(--duration-slow)]" style={{ clipPath: `inset(0 0 0 ${divider}%)` }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 z-10 w-px bg-white shadow-[0_0_0_1px_rgba(36,52,71,0.13)]" style={{ left: `${divider}%` }}><span className="absolute left-1/2 top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white bg-[var(--color-primary)] text-[14px] text-white shadow-[var(--shadow-m)]">↔</span></div>
     </div>
