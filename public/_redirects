@@ -1,2 +1,3 @@
-/  /en  301
+# Root serves the English home directly (200 rewrite, no redirect) so crawlers such as Naver get content at "/".
+/  /en  200
 /index.html  /en  301
